@@ -59,7 +59,7 @@ export function GamePad({
     );
 
     return {
-      transform: [{ scale: scale.value }],
+      transform: [{ scale: scale.value * (1 + brightness.value * 0.05) }],
       backgroundColor: bgColor,
       // Glow effect when active
       shadowColor: activeColor,
@@ -101,6 +101,8 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     borderRadius: BORDER_RADIUS.lg,
     margin: SPACING.sm,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
     shadowOffset: { width: 0, height: 0 },
   },
 });

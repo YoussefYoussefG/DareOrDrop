@@ -105,10 +105,10 @@ export const SHADOWS = {
 
 // Game pad configuration
 export const GAME_PADS = [
-  { id: 0, color: COLORS.padRed,    activeColor: '#FF6B81', label: 'Red' },
-  { id: 1, color: COLORS.padBlue,   activeColor: '#5352ED', label: 'Blue' },
-  { id: 2, color: COLORS.padGreen,  activeColor: '#7BED9F', label: 'Green' },
-  { id: 3, color: COLORS.padYellow, activeColor: '#FFD43B', label: 'Yellow' },
+  { id: 0, color: 'rgba(255, 71, 87, 0.25)',    activeColor: '#FF4757', label: 'Red' },
+  { id: 1, color: 'rgba(55, 66, 250, 0.25)',   activeColor: '#3742FA', label: 'Blue' },
+  { id: 2, color: 'rgba(46, 213, 115, 0.25)',  activeColor: '#2ED573', label: 'Green' },
+  { id: 3, color: 'rgba(255, 165, 2, 0.25)', activeColor: '#FFA502', label: 'Yellow' },
 ] as const;
 
 // Timing constants
