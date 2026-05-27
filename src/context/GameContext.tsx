@@ -37,7 +37,7 @@ export interface GameState {
 type GameAction =
   | { type: 'START_GAME' }
   | { type: 'SET_SCREEN'; screen: Screen }
-  | { type: 'EXTEND_SEQUENCE'; padId: number }
+  | { type: 'NEW_SEQUENCE'; sequence: number[] }
   | { type: 'START_SHOWING_SEQUENCE' }
   | { type: 'SET_ACTIVE_PAD'; padId: number | null }
   | { type: 'STOP_SHOWING_SEQUENCE' }
@@ -88,10 +88,10 @@ function gameReducer(state: GameState, action: GameAction): GameState {
     case 'SET_SCREEN':
       return { ...state, screen: action.screen };
 
-    case 'EXTEND_SEQUENCE':
+    case 'NEW_SEQUENCE':
       return {
         ...state,
-        sequence: [...state.sequence, action.padId],
+        sequence: action.sequence,
         playerInput: [],
       };
 
@@ -200,13 +200,24 @@ export function GameProvider({ children }: { children: ReactNode }) {
     []
   );
 
-  /** Start a new round — extend the sequence by one, then play it */
+  /** Start a new round — generate a completely new sequence */
   const startNextRound = useCallback(
     (currentSequence: number[]) => {
-      const newPad = randomPad();
-      const newSequence = [...currentSequence, newPad];
+      const newLength = currentSequence.length + 1;
+      const newSequence: number[] = [];
 
-      dispatch({ type: 'EXTEND_SEQUENCE', padId: newPad });
+      for (let i = 0; i < newLength; i++) {
+        let nextPad = randomPad();
+        // Prevent consecutive duplicate pads for a better feel
+        if (i > 0) {
+          while (nextPad === newSequence[i - 1]) {
+            nextPad = randomPad();
+          }
+        }
+        newSequence.push(nextPad);
+      }
+
+      dispatch({ type: 'NEW_SEQUENCE', sequence: newSequence });
 
       const delay = setTimeout(() => {
         playSequence(newSequence);
