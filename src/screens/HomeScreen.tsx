@@ -216,7 +216,8 @@ const styles = StyleSheet.create({
 
   // ── Info Card ──
   infoCard: {
-    width: width - SPACING.xl * 2,
+    width: '100%',
+    maxWidth: 400,
     marginBottom: SPACING.xl,
   },
   infoTitle: {

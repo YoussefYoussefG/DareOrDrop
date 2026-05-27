@@ -202,7 +202,8 @@ const styles = StyleSheet.create({
 
   // ── Score Card ──
   scoreCard: {
-    width: width - SPACING.xl * 2,
+    width: '100%',
+    maxWidth: 400,
     alignItems: 'center',
     marginBottom: SPACING.xl,
   },

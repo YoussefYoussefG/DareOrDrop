@@ -224,7 +224,8 @@ const styles = StyleSheet.create({
   padRow: {
     flexDirection: 'row',
     justifyContent: 'center',
-    width: width - SPACING.xl * 2,
+    width: '100%',
+    maxWidth: 400,
   },
 
   // ── Bottom Hint ──
